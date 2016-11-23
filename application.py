@@ -1,5 +1,5 @@
 # THIS IS THE APPLICATION
-from cs50 import SQL
+from cs50sql import SQL as SQL
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
@@ -396,3 +396,6 @@ def sell():
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("sell.html")
+
+if __name__ == "__main__":
+    app.run()

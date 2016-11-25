@@ -1,0 +1,16 @@
+Info:
+	Github email: seanthushan@gmail.com
+
+To-Do:
+
+1) Make Scraper Prorgam
+2) Set-Up databases so that they work with scraper program
+	- Error catching for no data/concert over
+	- How to get most # of concerts w/ the limits on requests
+3) Set flask to download Data from database
+4) Present data in graphs on frontend using Jinja
+5) Add functionality to add a new concert to track
+	- Search using name
+	- Autocomplete
+	- On homepage a search in the middle with currently tracked concerts and then concerts "to" track
+	

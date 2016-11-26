@@ -8,56 +8,6 @@ import datetime
 
 from helpers import *
 
-# History Function adds the given transaction to history table in sql
-def log_history(symbol, shares, price):
-     date = datetime.datetime.now().time()
-     db.execute("INSERT INTO history (id,date,symbol,shares,price) VALUES (:id,:date,:symbol,:shares,:price)", id=session["user_id"], date=str(date),symbol=symbol,shares=shares,price=price)
-
-# Returns the user's avaliable cash
-def user_cash():
-    data = db.execute("SELECT * FROM users WHERE id = :id", id=session["user_id"])
-    return float("{0:.2f}".format(data[0]['cash']))
-    
-# returns a a list of a dictionary of holdings and a total sum value
-def holdings_data():
-    # Gets data of holdings for all stocks held by user
-    holdings_data = db.execute("SELECT * FROM portfolio WHERE id=:id", id=session["user_id"])
-    
-    # Variable to hold total cash
-    total = 0
-    
-    # Creates a list of dictionaries to return
-    index_data = []
-    
-    # Iterates through each stock in the user's holding
-    for stock in holdings_data:
-        # get price and name of stock
-        stock_data = lookup(stock['symbol'])
-        
-        # calculate # of stocks*stock price
-        temp_total = stock_data['price']*stock['shares']
-        total += temp_total
-        
-        # Add all data to dictionary and to list
-        temp_dict = {}
-        temp_dict['symbol'] = stock_data['symbol']
-        temp_dict['name'] = stock_data['name']
-        temp_dict['price'] = usd(stock_data['price'])
-        temp_dict['shares'] = stock['shares']
-        temp_dict['total'] = usd(temp_total)
-        index_data.append(temp_dict)
-        
-    # Returns an array of the list of dictionaries and the total sum
-    return [index_data, total]
-    
-# A function that checks for SQL injections
-# Returns false if one is found. True if there is not one.
-def checkSQL(line):
-    for i in line:
-        if i=="'" or i == '"' or i == ";":
-            return False
-    return True
-
 # configure application
 app = Flask(__name__)
 
@@ -70,9 +20,6 @@ if app.config["DEBUG"]:
         response.headers["Pragma"] = "no-cache"
         return response
 
-# custom filter
-app.jinja_env.filters["usd"] = usd
-
 # configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_FILE_DIR"] = gettempdir()
 app.config["SESSION_PERMANENT"] = False
@@ -80,25 +27,15 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # configure CS50 Library to use SQLite database
-db = SQL("sqlite:///finance.db")
+db = SQL("sqlite:///tickets.db")
 
 @app.route("/")
-@login_required
 def index():
     # Create variable to keep track of total cash and avaliable cash
-    cash = user_cash()
-    total = cash
-    
-    # Gets a list of all transaction and stock data
-    data = holdings_data()
-    total += data[1]
-    data = data[0]
-
     # send information for index.html to index.html
-    return render_template("index.html", total=usd(total), cash=usd(cash), stocks = data)
+    return render_template("index.html", total=usd(total))
 
 @app.route("/buy", methods=["GET", "POST"])
-@login_required
 def buy():
     """Buy shares of stock."""
     # if user reached route via POST (as by submitting a form via POST)
@@ -158,7 +95,6 @@ def buy():
         return render_template("buy.html")
 
 @app.route("/history")
-@login_required
 def history():
     """Show history of transactions."""
     # Get all data and send to the jinja page
@@ -166,7 +102,6 @@ def history():
     return render_template("history.html", data = user_data)
     
 @app.route("/addfunds", methods=["GET", "POST"])
-@login_required
 def addfunds():
     """Add funds to the user's account."""
     # if user reached route via POST (as by submitting a form via POST)
@@ -250,7 +185,6 @@ def logout():
     return redirect(url_for("login"))
 
 @app.route("/quote", methods=["GET", "POST"])
-@login_required
 def quote():
     """Get stock quote."""
     # if user reached route via POST (as by submitting a form via POST)
@@ -332,7 +266,6 @@ def register():
         return render_template("register.html")
 
 @app.route("/sell", methods=["GET", "POST"])
-@login_required
 def sell():
     """Sell shares of stock."""
     # if user reached route via POST (as by submitting a form via POST)

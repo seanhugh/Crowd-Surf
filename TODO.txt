@@ -5,7 +5,7 @@ To-Do:
 
 1) Set up social media to work with this.
 2) Merge the two tables. Get info for concerts.
-3) Set flask to download Data from database
+3) Set flask to download Data from database and set up the whole frontend format.
 4) Present data in graphs on frontend using Jinja
 5) Add functionality to add a new concert to track
 	- Search using name

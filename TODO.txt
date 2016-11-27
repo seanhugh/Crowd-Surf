@@ -16,8 +16,3 @@ To-Do:
 LONGSHOTS
 
 1) Add in functionality for multiple types of seating... Maybe via a dropdown?
-
-
-
-
-RN: Work on converting application to python2

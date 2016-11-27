@@ -26,6 +26,9 @@ def logData(id):
 		volume = data["listing_count"]
 		social = "0"
 
+		# Log what happened in the output file
+		print("Added data for concert: " + id + " at time " + str(datetime.datetime.now()))
+
 		# Add to Database (which table?)
 		db.execute("INSERT INTO data (id,loPrice,avPrice,hiPrice,volume,social,datetime) VALUES (:id,:loPrice,:avPrice,:hiPrice,:volume,:social,:datetime)", id = id, loPrice=loPrice, avPrice=avPrice, hiPrice=hiPrice, volume=volume, social=social, datetime = str(datetime.datetime.now()))
 
@@ -39,7 +42,7 @@ def addConcert(id):
 		request_args = {"id":id}
 		events = seatgeek.get_events(request_args)
 
-		# Verify that concert exists
+		# Verify that concert exists AND is not already in the database
 
 		# Get Date of concert
 		date = events['events'][0]['datetime_utc']
@@ -65,7 +68,10 @@ def apology(top="", bottom=""):
             s = s.replace(old, new)
         return s
     return render_template("apology.html", top=escape(top), bottom=escape(bottom))
-logData("3368917")
+
+def concerts2Track():
+	x = db.execute("SELECT * FROM concerts WHERE end_date > date('now')");
+	return x
 
 
 

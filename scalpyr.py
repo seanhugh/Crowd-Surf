@@ -142,14 +142,12 @@ class Scalpyr(object):
             request_string += "taxnonomies"
         if (req_type == "events"):
             request_string+="sort=score.desc"
-        print request_string
         response = requests.get(request_string)
         dict_result = json.loads(response.text)
         return dict_result
 
     def search(self, url):
         request_string = self.base_url + "events?q=" + url
-        print request_string
         response = requests.get(request_string)
         dict_result = json.loads(response.text)
         return dict_result

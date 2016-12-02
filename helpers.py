@@ -1,8 +1,6 @@
 import csv
-
 from flask import redirect, render_template, request, session, url_for
 from functools import wraps
-
 from cs50sql import SQL as SQL
 import datetime
 from scalpyr import Scalpyr
@@ -45,24 +43,23 @@ def addConcert(id):
 		# Verify that concert exists AND is not already in the database
 
 		# Get Date of concert
+		description = ''
 		date = events['events'][0]['datetime_utc']
+		title = events['events'][0]['title']
+		location = events['events'][0]['venue']['city']
+		venue = events['events'][0]['venue']['name']
 
 		# Add to concerts table in database
-		
-		db.execute("INSERT INTO concerts (id,end_date) VALUES (:id,:datetime)", id = id, datetime = date)
-
+		db.execute("INSERT INTO concerts (id,datetime,name,description,location,venue,misc) VALUES (:id, :date, :title, :description, :location, :venue, :misc)", id=id,date=date,title=title,description=description,location=location,venue=venue,misc=description)
+	
 	except ValueError:
 		# Return an error??
 		print("Error Adding Concert")
 
+# Returns the concerts that have not yet occured
 def concerts2Track():
-	x = db.execute("SELECT * FROM concerts WHERE end_date > date('now')");
+	x = db.execute("SELECT * FROM concerts WHERE datetime > date('now')");
 	return x
-
-
-
-
-
 
 
 

@@ -61,8 +61,24 @@ def concerts2Track():
 	x = db.execute("SELECT * FROM concerts WHERE datetime > date('now')");
 	return x
 
+# Returns the concerts that have not yet occured
+def getPriceData(id):
+	x = db.execute("SELECT * FROM data WHERE id LIKE :id", id=id);
+	return x
 
+# Returns the concerts that have not yet occured
+def getConcertInfo(id):
+	x = db.execute("SELECT * FROM concerts WHERE id LIKE :id", id=id);
+	return x
 
+# Returns if the given string is a concert ID
+def isConcert(id):
+	x = db.execute("SELECT * FROM concerts WHERE id LIKE :id", id=id);
+	if (len(x) > 0):
+		return 1
+	else:
+		return 0
+	
 
 
 

@@ -103,4 +103,43 @@ input#concertSearch {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* Changing Intro BG */
+/*NAVBAR FOR CONCERTS*/
+.navbar-custom.top-nav-collapse-permanent {
+padding: 0;
+background: black;
+border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/*CONCERT PAGE EDITS */
+.concert-body {
+	background: white;
+}
+
+.concert-page {
+	color:black;
+}
+
+#concertHead {
+  padding-top:0px;
+  margin-top: 100px;
+}
+
+#concertHead h5{
+  float:left;
+  clear: both;
+  margin: 0 0 30px;
+}
+.percent{
+  color:green;
+}
+.subtitle{
+  float:left;
+  clear: both;
+  color:grey;
+  margin:0 0 0px;
+}
+h3 {
+  float:left;
+  clear: both;
+  margin:0 0 14px;
+}

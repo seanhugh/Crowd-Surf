@@ -1,11 +1,12 @@
-from flask import Flask, flash, redirect, render_template, request, session, url_for
+from flask import Flask, flash, redirect, render_template, request, session, url_for, json
 from helpers import *
 app = Flask(__name__)
 
 # HOMEPAGE
 @app.route("/")
-def hello():
-    return render_template("index.html", title="deeez")
+def index():
+	listData = ["one", "two", "three", "four"]
+	return render_template("index.html", autocompleteData = json.dumps(listData))
 
 # CONCERT PAGE
 @app.route('/<path:path>')

@@ -143,3 +143,50 @@ h3 {
   clear: both;
   margin:0 0 14px;
 }
+/*BUTTON STUFF*/
+a.btn.btn-circle.page-scroll {
+    position: absolute;
+    bottom: 50px;
+    transform: translate(-50%, 0);
+}
+.btn-circle,
+.btn-circle:hover,
+.btn-circle:focus {
+  outline: none;
+  color: white;
+  border:none;
+  /*background: rgba(255, 255, 255, 0.1);*/
+}
+.btn-circle:hover, .btn-circle:active, .btn-circle:focus{
+  background:none;
+}
+
+.btn-circle i.animated {
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: 1s;
+  -moz-transition-property: -moz-transform;
+  -moz-transition-duration: 1s;
+}
+.btn-circle i.animated {
+  -webkit-animation-name: pulse;
+  -moz-animation-name: pulse;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+}
+
+.centerText {
+    position: absolute;
+    bottom: 75px;
+    width: 100%;
+    text-align: center;
+    left:0;
+}
+li.ui-menu-item {
+    font-size: 20px;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 2;
+}

@@ -46,7 +46,7 @@
                     Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-play-circle"></i> <span class="light">Start</span> Bootstrap
+                    <i class="fa fa-play-circle"></i> <span class="light">CrowdSurf</span> 
                 </a>
             </div>
 
@@ -79,18 +79,21 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">{{title}}</h1>
+                        <h1 class="brand-heading">CrowdSurf</h1>
                         <div class="form-group">
                             <div class="icon-addon addon-lg">
                                 <input type="text" placeholder="Search for a Concert" class="form-control" id="concertSearch">
                                 <label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="email"></label>
                             </div>
                         </div>
-                        <a href="#about" class="btn btn-circle page-scroll">
-                            <i class="fa fa-angle-double-down animated"></i>
-                        </a>
                     </div>
                 </div>
+                <div class = "centerText">
+                    <h6>More Info</h6>
+                </div>
+                <a href="#about" class="btn btn-circle page-scroll">
+                    <i class="fa fa-angle-double-down animated"></i>
+                </a>
             </div>
         </div>
     </header>
@@ -143,8 +146,8 @@
         </div>
     </section>
 
-    <!-- Map Section -->
-    <div id="map"></div>
+    <!--  DATA GOES HERE  -->
+    <meta id="my-data" data-list="{{autocompleteData}}">
 
     <!-- Footer -->
     <footer>
@@ -157,6 +160,10 @@
     <!-- <script src="vendor/jquery/jquery.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
+    <!-- JQUERY UI -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <!-- <script src="vendor/bootstrap/js/bootstrap.min.js"></script> -->
     <!-- Latest compiled and minified JavaScript -->
@@ -165,11 +172,11 @@
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
-
     <!-- Theme JavaScript -->
-    <script src="static/grayscale.min.js"></script>
+    <script src="static/grayscale.js"></script>
+
+    <!-- MY JAVASCRIPT -->
+    <script src = "static/myScript.js"></script>
 
 </body>
 

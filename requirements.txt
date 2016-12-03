@@ -1,5 +1,9 @@
-Flask
-Flask-Session
-passlib
-SQLAlchemy
-Jinja
+Flask (sudo pip install flask)
+Flask-Session (sudo pip install flask-session)
+passlib (sudo pip install passlib)
+SQLAlchemy (sudo pip install SQLAlchemy)
+Jinja (sudo pip install jinja)
+scalpyr
+	- anyjson (sudo apt-get install python-anyjson)
+	- kombu   (sudo apt-get install python-kombu)
+beautiful soup (sudo apt-get install python3-bs4)

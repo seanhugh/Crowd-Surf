@@ -13,7 +13,8 @@ def index():
 @app.route('/<path:path>')
 def catch_all(path):
 	if isConcert(path):
-		return render_template("concert.html")
+		concertName = getConcertInfo(path)[0]['name']
+		return render_template("concert.html", concertName = concertName)
 	else:
 		return 'ERROR 404 CONCERT NOT FOUND'
     

@@ -6,7 +6,8 @@ app = Flask(__name__)
 # HOMEPAGE
 @app.route("/")
 def index():
-	listData = ["one", "two", "three", "four"]
+	listData = getAutocompleteData()
+	print listData
 	return render_template("index.html", autocompleteData = json.dumps(listData))
 
 # CONCERT PAGE
@@ -17,12 +18,6 @@ def catch_all(path):
 		return render_template("concert.html", concertName = concertName)
 	else:
 		return 'ERROR 404 CONCERT NOT FOUND'
-    
-
-# def static_proxy(path):
-#   # send_static_file will guess the correct MIME type
-#   # print 'hey'
-#   # return app.send_static_file(path)
 
 
 if __name__ == "__main__":

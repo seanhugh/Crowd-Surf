@@ -78,8 +78,14 @@ def isConcert(id):
 		return 1
 	else:
 		return 0
-	
-
+def getAutocompleteData():
+	x =concerts2Track()
+	tempList = []
+	for i in x:
+		tempName = i['name']
+		tempID = i['id']
+		tempList.append({'id':tempID, 'label':tempName})
+	return tempList
 
 
 # # Searching for concerts ranked from most to least popular.... added in using a name to do it

@@ -7,3 +7,6 @@ scalpyr
 	- anyjson (sudo apt-get install python-anyjson)
 	- kombu   (sudo apt-get install python-kombu)
 beautiful soup (sudo apt-get install python3-bs4)
+npm 
+bower
+typehead ("ln -s /usr/bin/nodejs /usr/bin/node" if that problem arrises)

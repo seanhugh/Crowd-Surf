@@ -226,3 +226,17 @@ a:hover{
     color: black;
     background-color: #F50057;
 }
+
+
+.frontbuttons{
+      border: 1px solid white;
+    outline: white;
+    color: white;
+    background-color: none;
+}
+.frontbuttons:hover, .frontbuttons:focus{
+      border: 1px solid white;
+    outline: white;
+    color: black;
+    background-color: white;
+}

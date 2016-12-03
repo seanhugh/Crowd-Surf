@@ -11,11 +11,21 @@ def index():
 	return render_template("index.html", autocompleteData = json.dumps(listData))
 
 # CONCERT PAGE
-@app.route('/<path:path>')
+@app.route('/all')
+def all():
+	return render_template("allConcert.html")
+
+# ADD CONCERT
+@app.route('/add')
+def add():
+	return render_template("addConcert.html")
+
+# CONCERT PAGE
+@app.route('/concert/<path:path>')
 def catch_all(path):
 	if isConcert(path):
 		concertName = getConcertInfo(path)[0]['name']
-		return render_template("concert.html", concertName = concertName)
+		return render_template("page.html", concertName = concertName)
 	else:
 		return 'ERROR 404 CONCERT NOT FOUND'
 

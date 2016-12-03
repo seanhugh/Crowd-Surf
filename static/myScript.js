@@ -22,32 +22,10 @@ $(function() {
             // $(this).val(ui.item.label);
             
             // $("#autocomplete2-id").val(ui.item.id);
-            window.location = ui.item.id;
-        },
-        open: function(event, ui) {
-            $('.ui-autocomplete').append('<div class="ui-menu-item-wrapper"><li class = "ui-menu-item"><a href="javascript:alert(\'redirecting...\')">Track a New Concert...</a></li></div>'); //See all results
+            window.location = "concert/" + ui.item.id;
         }
+        // open: function(event, ui) {
+        //     $('.ui-autocomplete').append('<div class="ui-menu-item-wrapper"><li class = "ui-menu-item"><a href="all">Show all Concerts...</a></li></div>'); //See all results
+        // }
     });
 });
-// $(function() {
-//     $("#autocomplete1").autocomplete({
-//         source: data
-//     });
-//     $("#autocomplete2").autocomplete({
-//         source: data,
-//         focus: function(event, ui) {
-//             // prevent autocomplete from updating the textbox
-//             event.preventDefault();
-//             // manually update the textbox
-//             $(this).val(ui.item.label);
-//         },
-//         select: function(event, ui) {
-//             // prevent autocomplete from updating the textbox
-//             event.preventDefault();
-//             // manually update the textbox and hidden field
-//             $(this).val(ui.item.label);
-
-//             $("#autocomplete2-id").val(ui.item.id);
-//         }
-//     });
-// });

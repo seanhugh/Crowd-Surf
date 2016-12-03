@@ -78,8 +78,20 @@ def isConcert(id):
 		return 1
 	else:
 		return 0
-	
+def getAutocompleteData():
+	x =concerts2Track()
+	tempList = []
+	for i in x:
+		tempName = i['name']
+		tempID = i['id']
+		tempList.append({'id':tempID, 'label':tempName})
+	return tempList
 
+def queryConcerts(key):
+	# Returns all events with the certain catch fraze.... will be awesome to use for the search feature
+	request_args = key
+	events = seatgeek.search(request_args)
+	return events
 
 
 # # Searching for concerts ranked from most to least popular.... added in using a name to do it
@@ -87,7 +99,3 @@ def isConcert(id):
 # # events = seatgeek.get_events(request_args)
 # # print events
 
-# # Returns all events with the certain catch fraze.... will be awesome to use for the search feature
-# request_args = "tiesto"
-# events = seatgeek.search(request_args)
-# print events

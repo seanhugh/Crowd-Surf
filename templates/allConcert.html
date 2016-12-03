@@ -1,0 +1,34 @@
+{% extends "concert.html" %}
+
+{% block title %}
+    Concert
+{% endblock %}
+
+{% block main %}
+    <!-- Concert Info -->
+    <section id="allConcert" class="container content-section text-center concert-page concertHead">
+        <div class="row">
+            <div class="container">
+
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h3> {{ concertName }}<span class="percent"> (+55%)</span></h3>
+                        <h4 class="subtitle"> Venue </h4>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5> Price High: </h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5> Volume High: </h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5> Social High: </h5>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

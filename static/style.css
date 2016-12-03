@@ -16,6 +16,7 @@ h1 {
 }
 
 .icon-addon {
+
     position: relative;
     color: #555;
     display: block;
@@ -90,6 +91,10 @@ h1 {
     color: #2580db;
 }
 
+.icon-addon .form-control:focus + .glyphicon, .icon-addon .glyphicon, .icon-addon .form-control:focus + .fa, .icon-addon .fa {
+    transition: color 0.3s ease-in-out!important;
+}
+
 .icon-addon .form-control:focus + .glyphicon, .icon-addon:hover .glyphicon, .icon-addon .form-control:focus + .fa, .icon-addon:hover .fa {
     color: #FF4181;
 }
@@ -119,7 +124,7 @@ border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 	color:black;
 }
 
-#concertHead {
+.concertHead {
   padding-top:0px;
   margin-top: 100px;
 }
@@ -189,4 +194,69 @@ li.ui-menu-item {
     font-size: 20px;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 2;
+}
+
+/*SUGGESTIONS*/
+
+#multiple-datasets .league-name {
+  margin: 0 20px 5px 20px;
+  padding: 3px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+#autocomplete2{
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a{
+   color: #F50057;
+}
+a:hover{
+   color: #FF4181;
+}
+.btn-default, .btn-default {
+    border: 1px solid #F50057;
+    outline: #F50057;
+    color: #F50057;
+    background-color: none;
+}
+.btn-default:hover, .btn-default:focus {
+    border: 1px solid #F50057;
+    outline: none;
+    color: black;
+    background-color: #F50057;
+}
+
+
+.frontbuttons{
+      border: 1px solid white;
+    outline: white;
+    color: white;
+    background-color: none;
+}
+.frontbuttons:hover, .frontbuttons:focus{
+      border: 1px solid white;
+    outline: white;
+    color: black;
+    background-color: white;
+}
+
+
+.tbhead{
+  margin-bottom:0px;
+}
+.tbbody{
+	text-align: left;
+}
+
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #C2185B;
+    border-color: #C2185B;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #F50057;
+    border-color: #F50057;
 }

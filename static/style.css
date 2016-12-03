@@ -124,7 +124,7 @@ border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 	color:black;
 }
 
-#concertHead {
+.concertHead {
   padding-top:0px;
   margin-top: 100px;
 }
@@ -239,4 +239,24 @@ a:hover{
     outline: white;
     color: black;
     background-color: white;
+}
+
+
+.tbhead{
+  margin-bottom:0px;
+}
+.tbbody{
+	text-align: left;
+}
+
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #C2185B;
+    border-color: #C2185B;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #F50057;
+    border-color: #F50057;
 }

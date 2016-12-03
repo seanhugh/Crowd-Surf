@@ -16,9 +16,28 @@ def all():
 	return render_template("allConcert.html")
 
 # ADD CONCERT
-@app.route('/add')
+@app.route('/add', methods=["GET", "POST"])
 def add():
-	return render_template("addConcert.html")
+	# if user reached route via POST (as by submitting a form via POST)
+    if request.method == "POST":
+
+    	# ensure symbol and shares were submitted
+        if not request.form.get("addConcertForm"):
+            return "NOTHING IN THE SEARCH"
+            
+        #set symbol variable
+        symbol=request.form.get("addConcertForm")
+
+        # Send Query
+        concerts = queryConcerts(symbol);
+
+        return render_template("addConcert.html", concerts=concerts)
+        
+        # look too see if user owns any of this stock
+        # stocks = db.execute("SELECT * FROM portfolio WHERE id = :id AND symbol LIKE :symbol", id=session["user_id"], symbol=symbol)
+        
+    else:
+		return render_template("addConcert.html", concerts=[])
 
 # CONCERT PAGE
 @app.route('/concert/<path:path>')

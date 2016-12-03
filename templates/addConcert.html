@@ -6,43 +6,40 @@
 
 {% block main %}
     <!-- Concert Info -->
-    <section id="concertHead" class="container content-section text-center concert-page">
-        <div class="row">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <h3> {{ concertName }}<span class="percent"> (+55%)</span></h3>
-                        <h4 class="subtitle"> Venue </h4>
-                    </div>
-                    <div class="col-sm-3">
-                        <h5> Price High: </h5>
-                        <h5> Price Low: </h5>
-                        <h5> Daily Flux: </h5>
-                    </div>
-                    <div class="col-sm-3">
-                        <h5> Volume High: </h5>
-                        <h5> Volume Low: </h5>
-                        <h5> Daily Flux: </h5>
-                    </div>
-                    <div class="col-sm-3">
-                        <h5> Social High: </h5>
-                        <h5> Social Low: </h5>
-                        <h5> Daily Flux: </h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section id="allConcert" class="container content-section text-center concert-page concertHead">
 
-    <!-- GRAPHS + NEWS -->
-    <section id="concertTables" class="container content-section text-center concert-page">
-        <div class="row">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-8">GOOGLE CHART</div>
-                    <div class="col-sm-4">GOOGLE NEWS</div>
+    	<h2>Add a new Concert</h2>
+        <form id="form2" action="{{ url_for('add') }}" method="post">
+            <div class="form-group">
+                <div class="icon-addon addon-lg">
+                    <input id = "addConcertForm" name = "addConcertForm" type="text" placeholder="Search for a Concert" class="form-control">
+                    <label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="email"></label>
                 </div>
             </div>
-        </div>
+        </form>
+
+        <table class="table">
+		  <thead>
+		    <tr>
+		      <th><h4 class = "tbhead">#</h4></th>
+		      <th><h4 class = "tbhead">Name</h4></th>
+		      <th><h4 class = "tbhead">Venue</h4></th>
+		      <th><h4 class = "tbhead">Date</h4></th>
+		      <th><h4 class = "tbhead">+</h4></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+            {% for concert in concerts['events'] %}
+			    <tr>
+			      <th scope="row"><h5 class = "tbbody">1</h5></th>
+			      <td><h5 class = "tbbody">{{ concert['title'] }}</h5></td>
+			      <td><h5 class = "tbbody">{{ concert['venue']['name'] }}</h5></td>
+			      <td><h5 class = "tbbody">{{ concert['datetime_utc'] }}</h5></td>
+			      <td><button type="button" class="btn btn-primary btn-sm">+</button></td>
+			    </tr>
+			{% endfor %} 
+		  </tbody>
+		</table>
+
     </section>
 {% endblock %}

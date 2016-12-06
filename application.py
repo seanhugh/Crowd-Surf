@@ -6,9 +6,9 @@ app = Flask(__name__)
 # HOMEPAGE
 @app.route("/")
 def index():
-	listData = getAutocompleteData()
-	print listData
-	return render_template("index.html", autocompleteData = json.dumps(listData))
+    listData = getAutocompleteData()
+    print listData
+    return render_template("index.html", autocompleteData = json.dumps(listData))
 
 # CONCERT PAGE
 @app.route('/all')
@@ -42,10 +42,12 @@ def add():
 # CONCERT PAGE
 @app.route('/concert/<path:path>')
 def catch_all(path):
-	if isConcert(path):
-		concertName = getConcertInfo(path)[0]['name']
-		return render_template("page.html", concertName = concertName)
-	else:
+    if isConcert(path):
+        priceData = getChartdata(path)
+        concertName = getConcertInfo(path)[0]['name']
+        print json.dumps(priceData)
+        return render_template("page.html", concertName = concertName, priceData = json.dumps(priceData))
+    else:
 		return 'ERROR 404 CONCERT NOT FOUND'
 
 

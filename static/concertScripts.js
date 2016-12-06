@@ -1,20 +1,25 @@
+var pricedata = $('#chart-data').data().list;
+
 google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-        ['Year', 'Sales', 'Expenses'],
-        ['2004',  1000,      400],
-        ['2005',  1170,      460],
-        ['2006',  660,       1120],
-        ['2007',  1030,      540]
-    ]);
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date/Time');
+    data.addColumn('number', 'Price');
+
+    for(i = 0; i < pricedata.length; i++)
+        data.addRow([pricedata[i][1], pricedata[i][0]]);
 
     var options = {
         title: 'Ticket Pricing Over Time',
-          legend: { position: 'bottom' }
+          legend: { position: 'top' }
     };
+
+    // chart = google.visualization.LineChart(document.getElementById('visualization'))
+
+    // chart.draw(data, options);
 
     var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 

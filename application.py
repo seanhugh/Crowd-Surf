@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     listData = getAutocompleteData()
-    print listData
+
     return render_template("index.html", autocompleteData = json.dumps(listData))
 
 # CONCERT PAGE
@@ -15,8 +15,6 @@ def index():
 def all():
     # GET LIST OF ALL UPCOMING CONCERTS
     concerts = concerts2Track()
-
-    print concerts
 
     #RETURN TEMPLATE WITH LIST
     return render_template("allConcert.html", concerts=concerts)

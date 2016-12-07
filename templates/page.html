@@ -11,18 +11,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-3">
-                        <h3> {{ concertName }}<span class="percent"> (+55%)</span></h3>
+                        <h3> {{ concertName }}<span class="percent"> ({{percentpriceflux}})</span></h3>
                         <h4 class="subtitle"> Venue </h4>
                     </div>
                     <div class="col-sm-3">
                         <h5> Std. Ticket Highest: {{highprice}}</h5>
                         <h5> Std. Ticket Lowest: {{lowprice}}</h5>
-                        <h5> hr/hr Price Flux: </h5>
+                        <h5> Recent Price Flux: {{priceflux}}</h5>
                     </div>
                     <div class="col-sm-3">
                         <h5> Starting Volume: {{initvolume}}</h5>
                         <h5> Outstanding Volume: {{currentvol}}</h5>
-                        <h5> hr/hr Volume Flux: </h5>
+                        <h5> Recent Volume Flux: {{volflux}}</h5>
                     </div>
                     <div class="col-sm-3">
                         <h5> Social High: </h5>

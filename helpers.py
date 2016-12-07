@@ -61,11 +61,23 @@ def concerts2Track():
 	x = db.execute("SELECT * FROM concerts WHERE datetime > date('now')");
 	return x
 
-def dailyTrack(id):
-	x = db.execute("SELECT volume FROM data WHERE datetime LIKE '(DATE_ADD(MAX(datetime),INTERVAL -15 MINUTE))' AND id = :id", id=id);
-	print x
+# Find maximum value of volume for flux
+def FluxMAX(id):
+	x = db.execute("SELECT MAX(volume) FROM data WHERE id = :id LIMIT 50", id=id);
 	return x
-dailyTrack(3368917)
+
+# Find minimum value of volume for flux
+def FluxMIN(id):
+	x = db.execute("SELECT MIN(volume) FROM data WHERE id = :id LIMIT 50", id=id);
+	return x
+
+def FluxPMAX(id):
+	x = db.execute("SELECT MAX(loPrice) FROM data WHERE id = :id LIMIT 50", id=id);
+	return x
+
+def FluxPMIN(id):
+	x = db.execute("SELECT MIN(loPrice) FROM data WHERE id = :id LIMIT 50", id=id);
+	return x
 
 # Returns the concerts that have not yet occured
 def getPriceData(id):
@@ -134,6 +146,21 @@ def getcurrentvol(id):
 		y = int(i['volume'])
 	return(y)
 
+def percentfluxtrack(id):
+	x = FluxPMIN(id)
+	for i in x:
+		xx = float(i['MIN(loPrice)'])
+	y = FluxPMAX(id)
+	for i in y:
+		yy = float(i['MAX(loPrice)'])
+	z = (yy - xx)*xx*100
+	if z >= 0:
+		q = str(z)
+		return('+'+q+'%')
+	if z < 0:
+		q = str(z)
+		return('-'+q+'%')
+
 def getvolumechartdata(id):
 	x = getvolchartdata(id)
 	tempList7 = []
@@ -141,7 +168,6 @@ def getvolumechartdata(id):
 		tempTime = i['datetime']
 		tempVolume = int(i['volume'])
 		tempList7.append([tempVolume, tempTime])
-	print tempList7
 	return tempList7
 
 # Gets relevant data from database for Charts
@@ -172,6 +198,25 @@ def initvolume(id):
 		y = int(i['volume'])
 	return(y)
 
+def getfluxtrack(id):
+	x = FluxMIN(id)
+	for i in x:
+		xx = int(i['MIN(volume)'])
+	y = FluxMAX(id)
+	for i in y:
+		yy = int(i['MAX(volume)'])
+	z = yy - xx
+	return z
+
+def getfluxPtrack(id):
+	x = FluxPMIN(id)
+	for i in x:
+		xx = float(i['MIN(loPrice)'])
+	y = FluxPMAX(id)
+	for i in y:
+		yy = float(i['MAX(loPrice)'])
+	z = yy - xx
+	return usd(z)
 
 # Floats and USDs standard ticket min data from database to feed into concerts page
 def getminiminPricer(id):

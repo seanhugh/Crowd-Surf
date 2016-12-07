@@ -74,7 +74,10 @@ def catch_all(path):
         startvolume = initvolume(path)
         currentvol = getcurrentvol(path)
         volchartdata = getvolumechartdata(path)
-        return render_template("page.html", concertName = concertName, priceData = json.dumps(priceData), highprice = highprice, lowprice = lowprice, initvolume = startvolume, currentvol = currentvol, volchartdata = json.dumps(volchartdata))
+        volflux = getfluxtrack(path)
+        priceflux = getfluxPtrack(path)
+        percentpriceflux = percentfluxtrack(path)
+        return render_template("page.html", concertName = concertName, priceData = json.dumps(priceData), highprice = highprice, lowprice = lowprice, initvolume = startvolume, currentvol = currentvol, volchartdata = json.dumps(volchartdata), volflux = volflux, priceflux = priceflux, percentpriceflux = percentpriceflux)
     else:
 		return 'ERROR 404 CONCERT NOT FOUND'
 

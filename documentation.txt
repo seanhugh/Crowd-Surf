@@ -76,6 +76,14 @@ browser to access your locally-hosted version of CrowdSurf. This version's datab
 with some data collected on several concerts for you to test out and explore.
 
 STEP 5:
+To continue to grab new data to populate your database dynamically, then open up another bash window and
+navigate once more to the Crowd-Surf folder using it. Then run 'python data_grabber.py'. This function will run
+through all of the saved concerts and periodically add new data to the database. This function can be left
+running constantly in the background to continue to populate your database for however long you see fit. When
+you would like to stop collecting data, exit the new bash window itself directly (do not attempt to Ctrl + C
+the function, as this may reset the database).
+
+STEP 6:
 You can now proceed to Step 3 of Perspective II if you would like a guide to exploring some of the features
 of CrowdSurf on your locally-hosted copy of the code.
 

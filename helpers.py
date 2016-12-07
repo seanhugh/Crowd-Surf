@@ -181,7 +181,6 @@ def getChartdata(id):
 		tempavPrice = float(i['avPrice'])
 		temphiPrice = float(i['hiPrice'])
 		tempList2.append([tempPrice, tempTime, tempavPrice, temphiPrice])
-	print tempList2
 	return tempList2
 
 

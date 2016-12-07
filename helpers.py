@@ -153,7 +153,8 @@ def percentfluxtrack(id):
 	y = FluxPMAX(id)
 	for i in y:
 		yy = float(i['MAX(loPrice)'])
-	z = (yy - xx)*xx*100
+	r = 100*(yy - xx)/xx
+	z = '{:,.2f}'.format(r)
 	if z >= 0:
 		q = str(z)
 		return('+'+q+'%')

@@ -1,5 +1,4 @@
 var pricedata = $('#chart-data').data().list;
-
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 

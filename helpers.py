@@ -67,7 +67,7 @@ def getPriceData(id):
 	return x
 
 def getChartdbdata(id):
-	x = db.execute("SELECT datetime,avPrice FROM data WHERE id LIKE :id", id=id);
+	x = db.execute("SELECT datetime,loPrice FROM data WHERE id LIKE :id", id=id);
 	return x
 
 # Returns the concerts that have not yet occured
@@ -101,7 +101,7 @@ def getChartdata(id):
 	tempList2 = []
 	for i in x:
 		tempTime = i['datetime']
-		tempPrice = float(i['avPrice'])
+		tempPrice = float(i['loPrice'])
 		tempList2.append([tempPrice, tempTime])
 	return tempList2
 

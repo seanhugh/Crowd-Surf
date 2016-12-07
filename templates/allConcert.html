@@ -7,28 +7,36 @@
 {% block main %}
     <!-- Concert Info -->
     <section id="allConcert" class="container content-section text-center concert-page concertHead">
-        <div class="row">
-            <div class="container">
 
+        <h2>All Concerts</h2>
 
-                <div class="row">
-                    <div class="col-sm-3">
-                        <h3> {{ concertName }}<span class="percent"> (+55%)</span></h3>
-                        <h4 class="subtitle"> Venue </h4>
-                    </div>
-                    <div class="col-sm-3">
-                        <h5> Price High: </h5>
-                    </div>
-                    <div class="col-sm-3">
-                        <h5> Volume High: </h5>
-                    </div>
-                    <div class="col-sm-3">
-                        <h5> Social High: </h5>
-                    </div>
-                </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><h4 class = "tbhead">#</h4></th>
+              <th><h4 class = "tbhead">Name</h4></th>
+              <th><h4 class = "tbhead">Venue</h4></th>
+              <th><h4 class = "tbhead">Date</h4></th>
+              <th><h4 class = "tbhead"></h4></th>
+            </tr>
+          </thead>
+              <tbody>
+                {% for concert in concerts %}
+                <form id="{{ concert['id'] }}" action="{{ url_for('add') }}" method="post">
+                    <tr>
+                      <th scope="row"><h5 class = "tbbody">1</h5></th>
+                      <td><h5 class = "tbbody">{{ concert['name'] }}</h5></td>
+                      <td><h5 class = "tbbody">{{ concert['venue'] }}</h5></td>
+                      <td><h5 class = "tbbody">{{ concert['datetime'] }}</h5></td>
+                      <td>
+                     <!--  <button name = "addButtonButton" id= "{{ concert['id'] }}" type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-fw"></i></button> -->
+                      <input id = "addButton" name = "addButton" type="submit" value = "{{ concert['id'] }}" placeholder="+" class="btn btn-primary btn-sm">
+                      </td>
+                    </tr>
+                </form>
+                {% endfor %} 
+              </tbody>
+        </table>
 
-
-            </div>
-        </div>
     </section>
 {% endblock %}

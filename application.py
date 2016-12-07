@@ -13,7 +13,13 @@ def index():
 # CONCERT PAGE
 @app.route('/all')
 def all():
-	return render_template("allConcert.html")
+    # GET LIST OF ALL UPCOMING CONCERTS
+    concerts = concerts2Track()
+
+    print concerts
+
+    #RETURN TEMPLATE WITH LIST
+    return render_template("allConcert.html", concerts=concerts)
 
 # ADD CONCERT
 @app.route('/add', methods=["GET", "POST"])
@@ -22,16 +28,36 @@ def add():
     if request.method == "POST":
 
     	# ensure symbol and shares were submitted
-        if not request.form.get("addConcertForm"):
-            return "NOTHING IN THE SEARCH"
+        if request.form.get("addConcertForm"):
             
-        #set symbol variable
-        symbol=request.form.get("addConcertForm")
+            #set symbol variable
+            symbol=request.form.get("addConcertForm")
 
-        # Send Query
-        concerts = queryConcerts(symbol);
+            # Send Query
+            concerts = queryConcerts(symbol);
 
-        return render_template("addConcert.html", concerts=concerts)
+            # Return the template with concert results
+            return render_template("addConcert.html", concerts=concerts)
+
+        # ensure symbol and shares were submitted
+        if request.form.get("addButton"):
+            
+            # #set symbol variable
+            id=request.form.get("addButton")
+
+            # add Concert to Database
+            addConcert(id)
+
+            # Log the Data for it
+            logData(id)
+
+            # Return the template with concert results
+            return redirect("/concert/" + id)
+
+        else:
+            return "NOTHING IN THE SEARCH"
+
+        
         
         # look too see if user owns any of this stock
         # stocks = db.execute("SELECT * FROM portfolio WHERE id = :id AND symbol LIKE :symbol", id=session["user_id"], symbol=symbol)
@@ -52,4 +78,4 @@ def catch_all(path):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(threaded=True)

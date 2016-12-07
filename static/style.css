@@ -260,3 +260,6 @@ a:hover{
     background-color: #F50057;
     border-color: #F50057;
 }
+.intro {
+    background: url(img/intro-bg3.png) no-repeat bottom center scroll;
+}

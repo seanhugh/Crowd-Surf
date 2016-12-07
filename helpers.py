@@ -66,9 +66,17 @@ def getPriceData(id):
 	x = db.execute("SELECT * FROM data WHERE id LIKE :id", id=id);
 	return x
 
+def getChartdbdata(id):
+	x = db.execute("SELECT datetime,loPrice FROM data WHERE id LIKE :id", id=id);
+	return x
+
 # Returns the concerts that have not yet occured
 def getConcertInfo(id):
 	x = db.execute("SELECT * FROM concerts WHERE id LIKE :id", id=id);
+	return x
+
+def getPricingData(id):
+	x = db.execute("SELECT loPrice,hiPrice,volume FROM data WHERE id LIKE :id", id=id);
 	return x
 
 # Returns if the given string is a concert ID
@@ -78,6 +86,7 @@ def isConcert(id):
 		return 1
 	else:
 		return 0
+
 def getAutocompleteData():
 	x =concerts2Track()
 	tempList = []
@@ -86,6 +95,19 @@ def getAutocompleteData():
 		tempID = i['id']
 		tempList.append({'id':tempID, 'label':tempName})
 	return tempList
+
+def getChartdata(id):
+	x = getChartdbdata(id)
+	tempList2 = []
+	for i in x:
+		tempTime = i['datetime']
+		tempPrice = float(i['loPrice'])
+		tempList2.append([tempPrice, tempTime])
+	return tempList2
+
+def getConcertOverHeaddata(id):
+	x = getPricingData(id)
+
 
 def queryConcerts(key):
 	# Returns all events with the certain catch fraze.... will be awesome to use for the search feature

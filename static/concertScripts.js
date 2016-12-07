@@ -6,8 +6,8 @@ function drawChart() {
 
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Date/Time');
-    data.addColumn('number', 'Average Price');
     data.addColumn('number', 'Low Price');
+    data.addColumn('number', 'Average Price');
     data.addColumn('number', 'High Price');
 
     for(i = 0; i < pricedata.length; i++)

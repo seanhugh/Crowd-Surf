@@ -75,8 +75,16 @@ def getConcertInfo(id):
 	x = db.execute("SELECT * FROM concerts WHERE id LIKE :id", id=id);
 	return x
 
-def getPricingData(id):
-	x = db.execute("SELECT loPrice,hiPrice,volume FROM data WHERE id LIKE :id", id=id);
+def getinitialvolume(id):
+	x = db.execute("SELECT volume FROM data ORDER BY :id ASC LIMIT 1", id=id);
+	return x
+
+def getminPricingData(id):
+	x = db.execute("SELECT MAX(loPrice) FROM data WHERE id LIKE :id;", id=id);
+	return x
+
+def getminiminPricingData(id):
+	x = db.execute("SELECT MIN(loPrice) FROM data WHERE id LIKE :id;", id=id);
 	return x
 
 # Returns if the given string is a concert ID
@@ -86,6 +94,9 @@ def isConcert(id):
 		return 1
 	else:
 		return 0
+
+def usd(y):
+	return('${:,.2f}'.format(y))
 
 def getAutocompleteData():
 	x =concerts2Track()
@@ -107,8 +118,24 @@ def getChartdata(id):
 		tempList2.append([tempPrice, tempTime, tempavPrice, temphiPrice])
 	return tempList2
 
-def getConcertOverHeaddata(id):
-	x = getPricingData(id)
+
+def getminPricer(id):
+	x = getminPricingData(id)
+	for i in x:
+		y = float(i['MAX(loPrice)'])
+	return(usd(y))
+
+def initvolume(id):
+	x = getinitialvolume(id)
+	for i in x:
+		y = float(i['volume'])
+	return(y)
+
+def getminiminPricer(id):
+	x = getminiminPricingData(id)
+	for i in x:
+		y = float(i['MIN(loPrice)'])
+	return(usd(y))
 
 
 def queryConcerts(key):

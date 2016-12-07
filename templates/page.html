@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-sm-3">
                         <h5> Starting Volume: {{initvolume}}</h5>
-                        <h5> Current Volume: </h5>
+                        <h5> Outstanding Volume: {{currentvol}}</h5>
                         <h5> hr/hr Volume Flux: </h5>
                     </div>
                     <div class="col-sm-3">
@@ -35,12 +35,15 @@
     </section>
     
     <meta id="chart-data" data-list="{{priceData}}">
+    <meta id="volchart-data" data-list="{{volchartdata}}">
 
     <!-- GRAPHS + NEWS -->
     <section id="concertTables" class="container content-section text-center concert-page">
         <div class="row">
             <div class="container">
                 <div class="row">
+                    <div class="col-sm-4">PRICING CHARTS</div>
+                    <div class="col-sm-8"><div id="curve_chart2" style="width: 900px; height: 500px"></div></div>
                     <div class="col-sm-8"><div id="curve_chart" style="width: 900px; height: 500px"></div></div>
                     <div class="col-sm-4">GOOGLE NEWS</div>
                 </div>

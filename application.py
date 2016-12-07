@@ -74,8 +74,9 @@ def catch_all(path):
         highprice = getminPricer(path)
         lowprice = getminiminPricer(path)
         startvolume = initvolume(path)
-        print json.dumps(priceData)
-        return render_template("page.html", concertName = concertName, priceData = json.dumps(priceData), highprice = highprice, lowprice = lowprice, initvolume = startvolume)
+        currentvol = getcurrentvol(path)
+        volchartdata = getvolumechartdata(path)
+        return render_template("page.html", concertName = concertName, priceData = json.dumps(priceData), highprice = highprice, lowprice = lowprice, initvolume = startvolume, currentvol = currentvol, volchartdata = json.dumps(volchartdata))
     else:
 		return 'ERROR 404 CONCERT NOT FOUND'
 

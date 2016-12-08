@@ -16,13 +16,21 @@ def logData(id):
 		request_args = {"id":id}
 		events = seatgeek.get_events(request_args)
 
-		# Parse through dictionary to get prices
 		data = events['events'][0]['stats']
-		avPrice = data["average_price"]
 		loPrice = data["lowest_price"]
-		hiPrice = data["highest_price"]
-		volume = data["listing_count"]
-		social = "0"
+		if loPrice != None:
+			# Parse through dictionary to get prices
+			avPrice = data["average_price"]
+			loPrice = data["lowest_price"]
+			hiPrice = data["highest_price"]
+			volume = data["listing_count"]
+			social = "0"
+		else:
+			avPrice = "0"
+			loPrice = "0"
+			hiPrice = "0"
+			volume = "0"
+			social = "0"
 
 		# Log what happened in the output file
 		print("Added data for concert: " + id + " at time " + str(datetime.datetime.now()))
@@ -153,8 +161,11 @@ def percentfluxtrack(id):
 	y = FluxPMAX(id)
 	for i in y:
 		yy = float(i['MAX(loPrice)'])
-	r = 100*(yy - xx)/xx
-	z = '{:,.2f}'.format(r)
+	if xx != 0:
+		r = 100*(yy - xx)/xx
+		z = '{:,.2f}'.format(r)
+	else:
+		z = "0"
 	if z >= 0:
 		q = str(z)
 		return('+'+q+'%')
@@ -181,6 +192,7 @@ def getChartdata(id):
 		tempavPrice = float(i['avPrice'])
 		temphiPrice = float(i['hiPrice'])
 		tempList2.append([tempPrice, tempTime, tempavPrice, temphiPrice])
+	print tempList2
 	return tempList2
 
 

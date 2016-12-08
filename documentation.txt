@@ -1,8 +1,9 @@
+Open this file in Sublime Text to see formatting clearly.
 /---------	/-----------
 | -------	| ---------
-| |		| |_______						 
+| |		    | |_______						 
 | |rowd		\________ \urf	    		for Windows 10 (Anniversary Edition)	
-| |		         | |					  
+| |		             | |					  
 | -------	 --------/ |
 \---------	----------/					-by Thushan Puhalendran and Sean Hughes, 2016
 ________________________________________________________________________________________________________________
@@ -11,7 +12,8 @@ ________________________________________________________________________________
 
 CrowdSurf is a web application which tracks concert ticket prices for events around the world. In writing this
 documentation, we have decided that it is best divided two distinct perspectives which reflect the dual nature
-of our platform.
+of our platform. Note, there is a video walkthrough available at
+https://www.youtube.com/watch?v=CG1v4NNA41E&feature=youtu.be
 ________________________________________________________________________________________________________________
 ----____----____----____----____----____----____----____----____----____----____----____----____----____----____
 ________________________________________________________________________________________________________________
@@ -22,9 +24,10 @@ This is thus the perspective of the CS50 grader.
 
 Perspective II: USER
 This section of the documentation is relevant for those who wish to simply utilise the already-running version
-of CrowdSurf hosted online by our server at http://ec2-35-164-125-116.us-west-2.compute.amazonaws.com/ This 
-version does not require the installation sequence needed for Perspective I. This would thus be the perspective 
-of all of CrowdSurf's userbase.
+of CrowdSurf hosted online by our server at http://ec2-35-164-125-116.us-west-2.compute.amazonaws.com/ Simply
+open your web browser and go to this URL to see our web application running. This version does not require the
+installation sequence needed for Perspective I. This would thus be the perspective of all of CrowdSurf's
+userbase.
 ________________________________________________________________________________________________________________
 ----____----____----____----____----____----____----____----____----____----____----____----____----____----____
 ________________________________________________________________________________________________________________

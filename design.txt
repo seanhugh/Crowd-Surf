@@ -9,33 +9,57 @@ ________________________________________________________________________________
 ----____----____----____----____----____----____----____----____----____----____----____----____----____----____
 ________________________________________________________________________________________________________________
 
-DOCUMENTATION
+DESIGN
+Languages, Formatting, etc. Used: Python, HTML, CSS, Javascript, SQL, GIT, JINJA
+________________________________________________________________________________________________________________
+----____----____----____----____----____----____----____----____----____----____----____----____----____----____
+________________________________________________________________________________________________________________
+
+Contents:
+
+-	scalpyr.py and data_grabber.py
+-	adding concerts
+-	all concerts
+-	autocomplete/search
+-	SQL Databases
+-	Google Charts API
+-	HTML/CSS/Javascript
+-	concert.html and page.html
+________________________________________________________________________________________________________________
+----____----____----____----____----____----____----____----____----____----____----____----____----____----____
+________________________________________________________________________________________________________________
+
+Section I: scalpyr.py and data_grabber.py - dynamic scraping and database updating
+
+The overall purpose of the code in scalpyr.py and data_grabber.py is to scrape data by querying seatgeek.com's
+API for results (ticket prices) for a given list of concerts. Then we take the JSON response from SeatGeek's
+REST API and convert that information into an array of dictionaries which we will be able to manipulate and use
+in other areas of our code to populate our concert pages with data, our charts and other information. Note that
+we are using the BeautifulSoup Python library to give us additional functions that help us pull data from
+SeatGeek's HTML pages to more effectively convert from HTML data into the Pythonic format we will require
+and store select relevant information in our database.
+
+All of these functions are defined within the greater Scalpyr object which we will be calling later
 
 ________________________________________________________________________________________________________________
 ----____----____----____----____----____----____----____----____----____----____----____----____----____----____
 ________________________________________________________________________________________________________________
 
-CrowdSurf is a web application which tracks concert ticket prices for events around the world. In writing this
-documentation, we have decided that it is best divided two distinct perspectives which reflect the dual nature
-of our platform.
-________________________________________________________________________________________________________________
-----____----____----____----____----____----____----____----____----____----____----____----____----____----____
-________________________________________________________________________________________________________________
-Perspective I: DEVELOPER
-This section of the documentation is relevant for those who wish to use the zipped code files downloaded from 
-GitHub (or submitted to CS50) themselves in order to run a locally-hosted version of CrowdSurf on their computer.
-This is thus the perspective of the CS50 grader. Note, if you simply wish to explore an all ready running
-version of the application, this can be done using Perspective II - you do not need to set up and install 
-CrowdSurf yourself - we have already done so and hosted it online.
 
-Perspective II: USER
-This section of the documentation is relevant for those who wish to simply utilise the already-running version
-of CrowdSurf hosted online by our server at http://ec2-35-164-125-116.us-west-2.compute.amazonaws.com/ This 
-version does not require the installation sequence needed for Perspective I. This would thus be the perspective 
-of all of CrowdSurf's userbase.
+Section II: scalpyr.py and data_grabber.py - dynamic scraping and database updating
+
+The overall purpose of the code in scalpyr.py and data_grabber.py is to scrape data by querying seatgeek.com's
+API for results (ticket prices) for a given list of concerts. Then we take the JSON response from SeatGeek's
+REST API and convert that information into an array of dictionaries which we will be able to manipulate and use
+in other areas of our code to populate our concert pages with data, our charts and other information. Note that
+we are using the BeautifulSoup Python library to give us additional functions that help us pull data from
+SeatGeek's HTML pages to more effectively convert from HTML data into the Pythonic format we will require
+and store select relevant information in our database.
+
 ________________________________________________________________________________________________________________
 ----____----____----____----____----____----____----____----____----____----____----____----____----____----____
 ________________________________________________________________________________________________________________
+
 
 Perspective I: DEVELOPER -
 

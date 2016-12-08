@@ -61,13 +61,32 @@ def concerts2Track():
 	x = db.execute("SELECT * FROM concerts WHERE datetime > date('now')");
 	return x
 
+# Find maximum value of volume for flux
+def FluxMAX(id):
+	x = db.execute("SELECT MAX(volume) FROM data WHERE id = :id LIMIT 50", id=id);
+	return x
+
+# Find minimum value of volume for flux
+def FluxMIN(id):
+	x = db.execute("SELECT MIN(volume) FROM data WHERE id = :id LIMIT 50", id=id);
+	return x
+
+def FluxPMAX(id):
+	x = db.execute("SELECT MAX(loPrice) FROM data WHERE id = :id LIMIT 50", id=id);
+	return x
+
+def FluxPMIN(id):
+	x = db.execute("SELECT MIN(loPrice) FROM data WHERE id = :id LIMIT 50", id=id);
+	return x
+
 # Returns the concerts that have not yet occured
 def getPriceData(id):
 	x = db.execute("SELECT * FROM data WHERE id LIKE :id", id=id);
 	return x
 
+# Gets relevant concert info for Google Charts
 def getChartdbdata(id):
-	x = db.execute("SELECT datetime,loPrice FROM data WHERE id LIKE :id", id=id);
+	x = db.execute("SELECT datetime,loPrice,avPrice,hiPrice FROM data WHERE id LIKE :id", id=id);
 	return x
 
 # Returns the concerts that have not yet occured
@@ -75,8 +94,24 @@ def getConcertInfo(id):
 	x = db.execute("SELECT * FROM concerts WHERE id LIKE :id", id=id);
 	return x
 
-def getPricingData(id):
-	x = db.execute("SELECT loPrice,hiPrice,volume FROM data WHERE id LIKE :id", id=id);
+# Gets initial volume of tickets
+def getinitialvolume(id):
+	x = db.execute("SELECT volume FROM data WHERE datetime=(SELECT MIN(datetime) FROM data WHERE id LIKE :id)", id=id);
+	return x
+
+# Gets all volumes of tickets
+def getcurrentvolume(id):
+	x = db.execute("SELECT volume FROM data WHERE datetime=(SELECT MAX(datetime) FROM data WHERE id LIKE :id)", id=id);
+	return x
+
+# Gets the highest price of standard tickets
+def getminPricingData(id):
+	x = db.execute("SELECT MAX(loPrice) FROM data WHERE id LIKE :id;", id=id);
+	return x
+
+# Gets the lowest price of standard tickets
+def getminiminPricingData(id):
+	x = db.execute("SELECT MIN(loPrice) FROM data WHERE id LIKE :id;", id=id);
 	return x
 
 # Returns if the given string is a concert ID
@@ -87,6 +122,15 @@ def isConcert(id):
 	else:
 		return 0
 
+def getvolchartdata(id):
+	x = db.execute("SELECT datetime,volume FROM data WHERE id LIKE :id", id=id);
+	return x
+
+# Converts decimal values into USD
+def usd(y):
+	return('${:,.2f}'.format(y))
+
+# Gets data from database for Autocomplete function
 def getAutocompleteData():
 	x =concerts2Track()
 	tempList = []
@@ -96,21 +140,94 @@ def getAutocompleteData():
 		tempList.append({'id':tempID, 'label':tempName})
 	return tempList
 
+def getcurrentvol(id):
+	x = getcurrentvolume(id)
+	for i in x:
+		y = int(i['volume'])
+	return(y)
+
+def percentfluxtrack(id):
+	x = FluxPMIN(id)
+	for i in x:
+		xx = float(i['MIN(loPrice)'])
+	y = FluxPMAX(id)
+	for i in y:
+		yy = float(i['MAX(loPrice)'])
+	r = 100*(yy - xx)/xx
+	z = '{:,.2f}'.format(r)
+	if z >= 0:
+		q = str(z)
+		return('+'+q+'%')
+	if z < 0:
+		q = str(z)
+		return('-'+q+'%')
+
+def getvolumechartdata(id):
+	x = getvolchartdata(id)
+	tempList7 = []
+	for i in x:
+		tempTime = i['datetime']
+		tempVolume = int(i['volume'])
+		tempList7.append([tempVolume, tempTime])
+	return tempList7
+
+# Gets relevant data from database for Charts
 def getChartdata(id):
 	x = getChartdbdata(id)
 	tempList2 = []
 	for i in x:
 		tempTime = i['datetime']
 		tempPrice = float(i['loPrice'])
-		tempList2.append([tempPrice, tempTime])
+		tempavPrice = float(i['avPrice'])
+		temphiPrice = float(i['hiPrice'])
+		tempList2.append([tempPrice, tempTime, tempavPrice, temphiPrice])
 	return tempList2
 
-def getConcertOverHeaddata(id):
-	x = getPricingData(id)
+
+# Floats and USDs standard ticket max data from database to feed into concerts page
+def getminPricer(id):
+	x = getminPricingData(id)
+	for i in x:
+		y = float(i['MAX(loPrice)'])
+	return(usd(y))
+
+# Ints the starting ticket volume to feed into concerts page
+def initvolume(id):
+	x = getinitialvolume(id)
+	for i in x:
+		y = int(i['volume'])
+	return(y)
+
+def getfluxtrack(id):
+	x = FluxMIN(id)
+	for i in x:
+		xx = int(i['MIN(volume)'])
+	y = FluxMAX(id)
+	for i in y:
+		yy = int(i['MAX(volume)'])
+	z = yy - xx
+	return z
+
+def getfluxPtrack(id):
+	x = FluxPMIN(id)
+	for i in x:
+		xx = float(i['MIN(loPrice)'])
+	y = FluxPMAX(id)
+	for i in y:
+		yy = float(i['MAX(loPrice)'])
+	z = yy - xx
+	return usd(z)
+
+# Floats and USDs standard ticket min data from database to feed into concerts page
+def getminiminPricer(id):
+	x = getminiminPricingData(id)
+	for i in x:
+		y = float(i['MIN(loPrice)'])
+	return(usd(y))
 
 
 def queryConcerts(key):
-	# Returns all events with the certain catch fraze.... will be awesome to use for the search feature
+	# Returns all events with the certain catch phrase... will be awesome to use for the search feature
 	request_args = key
 	events = seatgeek.search(request_args)
 	return events

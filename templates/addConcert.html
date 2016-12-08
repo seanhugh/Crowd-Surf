@@ -28,17 +28,24 @@
 		      <th><h4 class = "tbhead">+</h4></th>
 		    </tr>
 		  </thead>
-		  <tbody>
-            {% for concert in concerts['events'] %}
-			    <tr>
-			      <th scope="row"><h5 class = "tbbody">1</h5></th>
-			      <td><h5 class = "tbbody">{{ concert['title'] }}</h5></td>
-			      <td><h5 class = "tbbody">{{ concert['venue']['name'] }}</h5></td>
-			      <td><h5 class = "tbbody">{{ concert['datetime_utc'] }}</h5></td>
-			      <td><button type="button" class="btn btn-primary btn-sm">+</button></td>
-			    </tr>
-			{% endfor %} 
-		  </tbody>
+			  <tbody>
+	            {% for concert in concerts['events'] %}
+	            <form id="{{ concert['id'] }}" action="{{ url_for('add') }}" method="post">
+				    <tr>
+				      <th scope="row"><h5 class = "tbbody">1</h5></th>
+				      <td><h5 class = "tbbody">{{ concert['title'] }}</h5></td>
+				      <td><h5 class = "tbbody">{{ concert['venue']['name'] }}</h5></td>
+				      <td><h5 class = "tbbody">{{ concert['datetime_utc'][:10] }}</h5></td>
+				      <td>
+				      <div class = "buttonWrap">
+				      <input id = "addButton" name = "addButton" type="submit" value = "{{ concert['id'] }}" placeholder="+" class="btn btn-primary btn-sm">
+				      <i class="fa fa-plus fa-fw buttonFA"></i>
+				      </div>
+				      </td>
+				    </tr>
+				</form>
+				{% endfor %} 
+			  </tbody>
 		</table>
 
     </section>

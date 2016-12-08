@@ -18,12 +18,13 @@ ________________________________________________________________________________
 Contents:
 
 Section I:	scalpyr.py and data_grabber.py
-Section II:	adding concerts and viewing all concerts
-Section III:	autocomplete/search
-Section IV:	SQL Databases
-Section V:	Google Charts API
-Section VI:	HTML/CSS/Javascript
-Section VII:	concert.html and page.html
+Section II:	adding concerts
+Section III:	viewing all concerts
+Section IV:	autocomplete/search
+Section V:	SQL Databases
+Section VI:	Google Charts API
+Section VIII:	concert.html, page.html, other HTML and JavaScript
+Section VIII:	CSS styling
 
 ________________________________________________________________________________________________________________
 ----____----____----____----____----____----____----____----____----____----____----____----____----____----____
@@ -51,113 +52,98 @@ ________________________________________________________________________________
 ----____----____----____----____----____----____----____----____----____----____----____----____----____----____
 ________________________________________________________________________________________________________________
 
-
-Section II: adding concerts and viewing all concerts
+Section II: adding concerts
 
 It is possible to add new concerts anywhere around the world which have online ticket providers recorded on
 SeatGeek's API. We can see this function in helpers.py. The functiont takes the user input and searches SeatGeek
-for any concerts similar to the input before using the prior mentioned scalpyr object to get 
+for any concerts similar to the input before using the prior mentioned scalpyr object to get dictionaries of the
+relevant event data. We then insert the data into our SQL database.
+
+________________________________________________________________________________________________________________
+----____----____----____----____----____----____----____----____----____----____----____----____----____----____
+________________________________________________________________________________________________________________
+
+Section III: viewing all concerts
+
+The all concerts.html page passes in all of the concert data for the concerts that are currently being tracked.
+Each one also has a URL that links to the specific concert page for that concert.
+
+________________________________________________________________________________________________________________
+----____----____----____----____----____----____----____----____----____----____----____----____----____----____
+________________________________________________________________________________________________________________
+
+Section IV: autocomplete/search
+
+In helpers.py, getAutocompleteData() is called to take all of the names and IDs of concerts currently stored
+in the database. This is called in application.py which runs the flask components of the coding and is passed
+into the index.html page - our splash page. In index.html there is a meta tag which takes this information and
+passes it on to the javascript file myScript.js which then calls jquery's built in autocomplete function. This
+allows us to use jquery's built in functionality rather than build redundant code so we have better overall
+design. Finally, this is passed back to our index.html page to our search bar.
+
+________________________________________________________________________________________________________________
+----____----____----____----____----____----____----____----____----____----____----____----____----____----____
+________________________________________________________________________________________________________________
+
+Section V: SQL Databases
+
+The main database we are utilising is tickets.db which stores all of the low prices, high prices, average
+prices, ticket volumes, and datetimes of every log. We primarily query our database using helpers.py to
+populate all of the data that appears on concert pages, and also our index.html's search bar and our
+all concerts page's table.
+
+________________________________________________________________________________________________________________
+----____----____----____----____----____----____----____----____----____----____----____----____----____----____
+________________________________________________________________________________________________________________
+
+Section VI: Google Charts API
+
+We have utilised Google Charts' API in order to graph all of our relevant pricing data. In particular, we have
+passed in functions which allow us to dynamically increase the number of entries in our graph.
+
+First, we begin in helpers.py where we query our database for all of the data we need to populate our charts
+using getvolumechartdata(id) and getChartdata(id). Note that we have, in helpers.py, converted the results of
+our SQL Query (which returns a dictionary) into the appropriate data type then appended them into an array as
+our Chart requires an array or list of data to interpret. These functions are called in application.py and
+the arrays are passed into page.html - the unique page that is generated for each concert.
+
+Next, we have meta tags in page.html which generate a unique id for the data that is being passed in. Note that
+we have used script tags so that we can access the Google Charts API in concert.html (page.html extends
+concerts.html). We then move to concertScripts.js which uses the unique id to take the arrays and uses
+functions from Google's API to create a DataTable for each graph where we dynamically add rows and insert
+data for every element of our array. Note that we have used arrays of arrays where necessary to facilitate
+this. Finally, the Google API draws the chart with a unique id and page.html calls that unique id in
+a specific place on the page where we want that chart to appear.
+
+________________________________________________________________________________________________________________
+----____----____----____----____----____----____----____----____----____----____----____----____----____----____
+________________________________________________________________________________________________________________
+
+Section VII: concert.html, page.html, other HTML and JavaScript
+
+We will now take a moment to describe our various HTML documents and their associated JavaScript pages. Firstly
+note that concerts.html is a generic template for the concert pages, and each concert page is extended by
+page.html. By feeding in unique data to every page.html then we receive all of the unique concert pages that
+we need without having to unnecessarily continuously create new pages for every concert - instead the only
+increase in memory usage stems from the increasing size of our database. This helps streamline our design and
+reduces redunancies. 
+
+________________________________________________________________________________________________________________
+----____----____----____----____----____----____----____----____----____----____----____----____----____----____
+________________________________________________________________________________________________________________
+
+Section VIII: CSS Styling
+
+The main database we are utilising is tickets.db which stores all of the low prices, high prices, average
+prices, ticket volumes, and datetimes of every log. We primarily query our database using helpers.py to
+populate all of the data that appears on concert pages, and also our index.html's search bar and our
+all concerts page's table.
 
 ________________________________________________________________________________________________________________
 ----____----____----____----____----____----____----____----____----____----____----____----____----____----____
 ________________________________________________________________________________________________________________
 
 
-Perspective I: DEVELOPER -
-
-STEP 1:
-First, extract all files from Crowd-Surf.zip to your desired folder
-
-STEP 2:
-In order to run CrowdSurf from the command line, you must have access to the linux bash shell on Windows 10,
-which became available with the Windows 10 Anniversary Update. If you do not currently have 'Bash on Ubuntu
-on Windows' installed, it is possible to find multiple guides online to do so before proceeding, such as at
-http://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/
-
-STEP 3:
-Once the bash shell is working, we can use it to install the necessary Linux Software to run CrowdSurf.
-Firstly, use console commands inside the bash shell to navigate to the folder you have extracted CrowdSurf to
-(for example: 'cd /mnt/c/Users/thushan/Documents/Crowd-Surf'). Now we must install the following packages by
-typing the commands in parentheses into bash. This is the installation sequence:
-
-Flask (sudo pip install flask)
-
-Flask-Session (sudo pip install flask-session)
-
-passlib (sudo pip install passlib)
-
-SQLAlchemy (sudo pip install SQLAlchemy)
-
-Jinja (sudo pip install jinja)
 
 
-anyjson (sudo apt-get install python-anyjson)
 
-kombu (sudo apt-get install python-kombu)
-
-
-beautiful soup (sudo apt-get install python3-bs4)
-
-npm 
-bower
-typehead ("ln -s /usr/bin/nodejs /usr/bin/node" if that problem arises)
-
-STEP 4:
-Now, to run the program, simply type 'python application.py' into bash. Note that we are using Python 2 so as
-to make use of all the greater number of available libraries in Python 2. If all packages have been correctly
-installed, the console will output some variation of ' * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-where the precise http:// address may vary according to your computer. Type this address into your internet
-browser to access your locally-hosted version of CrowdSurf. This version's database will already be populated
-with some data collected on several concerts for you to test out and explore.
-
-STEP 5:
-To continue to grab new data to populate your database dynamically, then open up another bash window and
-navigate once more to the Crowd-Surf folder using it. Then run 'python data_grabber.py'. This function will run
-through all of the saved concerts and periodically add new data to the database. This function can be left
-running constantly in the background to continue to populate your database for however long you see fit. When
-you would like to stop collecting data, exit the new bash window itself directly (do not attempt to Ctrl + C
-the function, as this may reset the database).
-
-STEP 6:
-You can now proceed to Step 3 of Perspective II if you would like a guide to exploring some of the features
-of CrowdSurf on your locally-hosted copy of the code.
-
-________________________________________________________________________________________________________________
-----____----____----____----____----____----____----____----____----____----____----____----____----____----____
-________________________________________________________________________________________________________________
-
-Perspective II: USER -
-
-STEP 1:
-Open the online version of CrowdSurf at http://ec2-35-164-125-116.us-west-2.compute.amazonaws.com/ in a browser
-
-STEP 2:
-Test out some features!
-	i.	Click All Concerts to view all the concerts that are currently being tracked. You can click on
-		a specific concert to be taken to that concert's page
-	ii.	Click Add Concert to be able to search for a new concert you are interested in (remember to
-		press enter to send your query) and add a new concert to be tracked. Note, we have avoided
-		SQL injection attacks by using : 'bind variables' to disallow them.
-	iii.	Search for a concert to be taken to its specific concert page (uses an autocomplete function to
-		draw on concerts currently in the database, also uses a bind variable).
-	iv. 	Go to the About section of the splashpage to read an abstract on some of CrowdSurf's
-		functionality and motivation.
-	v.	Go to the Contact feature to be given directions to contact the developers Thushan and Sean.
-		Note, if you are using Google Chrome then you must have configured your handlers to allow Gmail
-		control over all mailing processes for the 'mailto:' button to automatically open a GMail
-		message to send to us. 
-	vi.	On a given concert page there is a great deal of information available such as the lowest 
-		price of standard tickets, the most recent price fluxes - changes due to ticket providers
-		deciding to reprice, bring more tickets online or selling out, the highest price of the standard
-		ticket prices, starting volumes of tickets when CrowdSurf first began tracking the concert, and 
-		current outstanding volumes of tickets. All of this information will dynamically update every
-		~20 minutes from our database - simply refresh to see changes. Note, if you are on a locally-
-		hosted version of the website, you must be running data_grabber.py for this data to update.
-	vii.	Also on the concert page, you will notice a series of charts which track prices and volumes of
-		charts. These update dynamically every ~20 minutes (this time interval is actually staggered
-		so as not avoid overloading the API with too many requests).
-
-STEP 3:
-Share it! Anyone can add any concert they wish to the database to track, and thus the web application becomes
-more and more useful and powerful as its user base grows and adds more concerts earlier in their ticketing
-cycles. As the app grows, so to does the user experience.

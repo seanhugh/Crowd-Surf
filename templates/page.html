@@ -11,23 +11,23 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-3">
-                        <h3> {{ concertName }}<span class="percent"> ({{percentpriceflux}})</span></h3>
-                        <h4 class="subtitle"> Venue </h4>
+                        <h3> {{ concertName }}</h3>
+                        <h4 class="subtitle">Venue<span class="percent"> ({{percentpriceflux}})</span></h4>
                     </div>
                     <div class="col-sm-3">
-                        <h5> Std. Ticket Highest: {{highprice}}</h5>
-                        <h5> Std. Ticket Lowest: {{lowprice}}</h5>
-                        <h5> Recent Price Flux: {{priceflux}}</h5>
+                        <h5>Std. Ticket Highest: {{highprice}}</h5>
+                        <h5>Std. Ticket Lowest: {{lowprice}}</h5>
+                        <h5>Recent Price Flux: {{priceflux}}</h5>
                     </div>
                     <div class="col-sm-3">
-                        <h5> Starting Volume: {{initvolume}}</h5>
-                        <h5> Outstanding Volume: {{currentvol}}</h5>
-                        <h5> Recent Volume Flux: {{volflux}}</h5>
+                        <h5>Starting Volume: {{initvolume}}</h5>
+                        <h5>Outstanding Volume: {{currentvol}}</h5>
+                        <h5>Recent Volume Flux: {{volflux}}</h5>
                     </div>
                     <div class="col-sm-3">
-                        <h5> Social High: </h5>
-                        <h5> Social Low: </h5>
-                        <h5> Daily Flux: </h5>
+                        <h5>Social High: </h5>
+                        <h5>Social Low: </h5>
+                        <h5>Daily Flux: </h5>
                     </div>
                 </div>
             </div>
@@ -38,14 +38,12 @@
     <meta id="volchart-data" data-list="{{volchartdata}}">
 
     <!-- GRAPHS + NEWS -->
-    <section id="concertTables" class="container content-section text-center concert-page">
+    <section id="concertTables" class="container content-section text-center concert-page jumbotron">
         <div class="row">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4">PRICING CHARTS</div>
-                    <div class="col-sm-8"><div id="curve_chart2" style="width: 900px; height: 500px"></div></div>
-                    <div class="col-sm-8"><div id="curve_chart" style="width: 900px; height: 500px"></div></div>
-                    <div class="col-sm-4">GOOGLE NEWS</div>
+                    <div class="col-sm-6"><div id="curve_chart2" style="width: 700px; height: 500px; float:left;"></div></div>
+                    <div class="col-sm-6"><div id="curve_chart" style="width: 700px; height: 500px; float:right;"></div></div>
                 </div>
             </div>
         </div>

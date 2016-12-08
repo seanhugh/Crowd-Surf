@@ -69,6 +69,7 @@ def catch_all(path):
     if isConcert(path):
         priceData = getChartdata(path)
         concertName = getConcertInfo(path)[0]['name']
+        concertName = (concertName[:15] + '...') if len(concertName) > 15 else concertName
         highprice = getminPricer(path)
         lowprice = getminiminPricer(path)
         startvolume = initvolume(path)

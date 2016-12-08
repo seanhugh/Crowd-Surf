@@ -9,12 +9,6 @@ ________________________________________________________________________________
 ----____----____----____----____----____----____----____----____----____----____----____----____----____----____
 ________________________________________________________________________________________________________________
 
-DOCUMENTATION
-
-________________________________________________________________________________________________________________
-----____----____----____----____----____----____----____----____----____----____----____----____----____----____
-________________________________________________________________________________________________________________
-
 CrowdSurf is a web application which tracks concert ticket prices for events around the world. In writing this
 documentation, we have decided that it is best divided two distinct perspectives which reflect the dual nature
 of our platform.
@@ -24,9 +18,7 @@ ________________________________________________________________________________
 Perspective I: DEVELOPER
 This section of the documentation is relevant for those who wish to use the zipped code files downloaded from 
 GitHub (or submitted to CS50) themselves in order to run a locally-hosted version of CrowdSurf on their computer.
-This is thus the perspective of the CS50 grader. Note, if you simply wish to explore an all ready running
-version of the application, this can be done using Perspective II - you do not need to set up and install 
-CrowdSurf yourself - we have already done so and hosted it online.
+This is thus the perspective of the CS50 grader.
 
 Perspective II: USER
 This section of the documentation is relevant for those who wish to simply utilise the already-running version
@@ -109,26 +101,19 @@ Test out some features!
 	i.	Click All Concerts to view all the concerts that are currently being tracked. You can click on
 		a specific concert to be taken to that concert's page
 	ii.	Click Add Concert to be able to search for a new concert you are interested in (remember to
-		press enter to send your query) and add a new concert to be tracked. Note, we have avoided
-		SQL injection attacks by using : 'bind variables' to disallow them.
+		press enter to send your query) and add a new concert to be tracked.
 	iii.	Search for a concert to be taken to its specific concert page (uses an autocomplete function to
-		draw on concerts currently in the database, also uses a bind variable).
+		draw on concerts currently in the database).
 	iv. 	Go to the About section of the splashpage to read an abstract on some of CrowdSurf's
-		functionality and motivation.
-	v.	Go to the Contact feature to be given directions to contact the developers Thushan and Sean.
-		Note, if you are using Google Chrome then you must have configured your handlers to allow Gmail
-		control over all mailing processes for the 'mailto:' button to automatically open a GMail
-		message to send to us. 
+		functionality.
+	v.	Go to the Contact feature to be given directions to contact the developers Thushan and Sean
 	vi.	On a given concert page there is a great deal of information available such as the lowest 
 		price of standard tickets, the most recent price fluxes - changes due to ticket providers
 		deciding to reprice, bring more tickets online or selling out, the highest price of the standard
 		ticket prices, starting volumes of tickets when CrowdSurf first began tracking the concert, and 
-		current outstanding volumes of tickets. All of this information will dynamically update every
-		~20 minutes from our database - simply refresh to see changes. Note, if you are on a locally-
-		hosted version of the website, you must be running data_grabber.py for this data to update.
-	vii.	Also on the concert page, you will notice a series of charts which track prices and volumes of
-		charts. These update dynamically every ~20 minutes (this time interval is actually staggered
-		so as not avoid overloading the API with too many requests).
+		current outstanding volumes of tickets
+	vii.	Also on the concert page you will notice a series of charts which track prices and volumes of
+		charts. These update dynamically every 10-15 minutes (staggered so as not to overload the API)
 
 STEP 3:
 Share it! Anyone can add any concert they wish to the database to track, and thus the web application becomes

@@ -1,3 +1,5 @@
+Open this file using Sublime Text if formatting is not appearing correctly.
+Warning - this uses Python 2 and will not run in CS50 IDE.
 /---------	/-----------
 | -------	| ---------
 | |		| |_______						 
@@ -11,7 +13,8 @@ ________________________________________________________________________________
 
 CrowdSurf is a web application which tracks concert ticket prices for events around the world. In writing this
 documentation, we have decided that it is best divided two distinct perspectives which reflect the dual nature
-of our platform.
+of our platform. You can access an online walkthrough of the web application at
+https://www.youtube.com/watch?v=CG1v4NNA41E&feature=youtu.be
 ________________________________________________________________________________________________________________
 ----____----____----____----____----____----____----____----____----____----____----____----____----____----____
 ________________________________________________________________________________________________________________
@@ -44,7 +47,10 @@ STEP 3:
 Once the bash shell is working, we can use it to install the necessary Linux Software to run CrowdSurf.
 Firstly, use console commands inside the bash shell to navigate to the folder you have extracted CrowdSurf to
 (for example: 'cd /mnt/c/Users/thushan/Documents/Crowd-Surf'). Now we must install the following packages by
-typing the commands in parentheses into bash. This is the installation sequence:
+typing the commands in parentheses into bash. This is the installation sequence, say 'y' to all the
+permission requests that come up:
+
+Install pip (sudo apt-get install python-pip python-dev build-essential)
 
 Flask (sudo pip install flask)
 
@@ -63,6 +69,7 @@ kombu (sudo apt-get install python-kombu)
 
 
 beautiful soup (sudo apt-get install python3-bs4)
+beautiful soup update (sudo pip install bs4)
 
 npm 
 bower
@@ -84,7 +91,7 @@ you would like to stop collecting data, exit the new bash window itself directly
 the function, as this may reset the database).
 
 STEP 6:
-You can now proceed to Step 3 of Perspective II if you would like a guide to exploring some of the features
+You can now proceed to Step 2 of Perspective II if you would like a guide to exploring some of the features
 of CrowdSurf on your locally-hosted copy of the code.
 
 ________________________________________________________________________________________________________________

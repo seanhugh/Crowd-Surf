@@ -38,7 +38,8 @@ REST API and convert that information into an array of dictionaries which we wil
 in other areas of our code to populate our concert pages with data, our charts and other information. Note that
 we are using the BeautifulSoup Python library to give us additional functions that help us pull data from
 SeatGeek's HTML pages to more effectively convert from HTML data into the Pythonic format we will require
-and store select relevant information in our database.
+and store select relevant information in our database. Scalpyr is based on open source code which we have 
+changed and adapted to work for our specific needs.
 
 All of these functions are defined within the greater Scalpyr object which we will be calling later such as
 in helpers.py whenever we want to pull new data.
@@ -119,14 +120,16 @@ ________________________________________________________________________________
 ----____----____----____----____----____----____----____----____----____----____----____----____----____----____
 ________________________________________________________________________________________________________________
 
-Section VII: concert.html, page.html, other HTML and JavaScript
+Section VII: concert.html, page.html other HTML and JavaScript
 
 We will now take a moment to describe our various HTML documents and their associated JavaScript pages. Firstly
 note that concerts.html is a generic template for the concert pages, and each concert page is extended by
 page.html. By feeding in unique data to every page.html then we receive all of the unique concert pages that
 we need without having to unnecessarily continuously create new pages for every concert - instead the only
 increase in memory usage stems from the increasing size of our database. This helps streamline our design and
-reduces redunancies. 
+reduces redunancies. As necessary we have used JavaScript where we needed to call APIs or jquery to allow
+our HTML pages to respond dynamically on the user-end or, in the case of Google Charts, graph the relevant
+data correctly.
 
 ________________________________________________________________________________________________________________
 ----____----____----____----____----____----____----____----____----____----____----____----____----____----____
@@ -134,10 +137,9 @@ ________________________________________________________________________________
 
 Section VIII: CSS Styling
 
-The main database we are utilising is tickets.db which stores all of the low prices, high prices, average
-prices, ticket volumes, and datetimes of every log. We primarily query our database using helpers.py to
-populate all of the data that appears on concert pages, and also our index.html's search bar and our
-all concerts page's table.
+Our CSS files can be found in our static folder, namely 'grayscale' and 'style'. Grayscale is open-source
+template which we have based our code on but have adapted to our own stylistic and aesthetic needs to suit
+the theme and spirit of our web application.
 
 ________________________________________________________________________________________________________________
 ----____----____----____----____----____----____----____----____----____----____----____----____----____----____

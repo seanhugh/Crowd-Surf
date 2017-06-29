@@ -127,7 +127,7 @@ def addfunds():
         # Updates cash total in user's account (db)
         db.execute("UPDATE users SET cash = :cash WHERE ID = :id", cash = total, id = session["user_id"])
         
-        # Updates the page to the statement page
+                # Updates the page to the statement page
         return render_template("fundsadded.html", statement = statement)
         
     # else if user reached route via GET (as by clicking a link or via redirect)
